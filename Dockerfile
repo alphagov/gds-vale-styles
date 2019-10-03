@@ -8,7 +8,8 @@ RUN wget https://github.com/errata-ai/vale/archive/v1.7.1.tar.gz \
  && mv ./main /build/vale
 
 FROM scratch
-WORKDIR /repo
+COPY GDS /GDS
 COPY --from=build /build/vale /vale
-ENTRYPOINT ["/vale"]
+WORKDIR /repo
+ENTRYPOINT ["/vale", "--config", "/GDS"]
 CMD ["--help"]

@@ -6,11 +6,18 @@ jobs:
     steps:
       - uses: actions/checkout@v1.0.0
       - name: Build image
-        run: docker build -t docker.pkg.github.com/alphagov/gds-vale-styles/gds-vale:${GITHUB_REF}-${GITHUB_SHA::7} .
+        run: |
+          TAG="$(basename $GITHUB_REF)-${GITHUB_SHA::7}"
+          docker build -t docker.pkg.github.com/alphagov/gds-vale-styles/gds-vale:$TAG .
+      - name: Test image
+        run: |
+          TAG="$(basename $GITHUB_REF)-${GITHUB_SHA::7}"
+          IMAGE=docker.pkg.github.com/alphagov/gds-vale-styles/gds-vale:$TAG ./test.sh
       - name: Publish image
         env:
           DOCKER_USER: vixus0
           DOCKER_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
         run: |
+          TAG="$(basename $GITHUB_REF)-${GITHUB_SHA::7}"
           docker login docker.pkg.github.com -u "$DOCKER_USER" -p "$DOCKER_TOKEN"
-          docker push docker.pkg.github.com/alphagov/gds-vale-styles/gds-vale:${GITHUB_REF}-${GITHUB_SHA::7}
+          docker push docker.pkg.github.com/alphagov/gds-vale-styles/gds-vale:$TAG
