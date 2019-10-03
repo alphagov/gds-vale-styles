@@ -1,5 +1,10 @@
 # gds-vale-styles
+
 The GDS content style guide codified as Vale config files
+
+## Code of conduct
+
+Please refer to the `alphagov` [code of conduct](https://github.com/alphagov/code-of-conduct).
 
 ## Licence
 
