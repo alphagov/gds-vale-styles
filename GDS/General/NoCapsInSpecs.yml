@@ -1,8 +1,8 @@
 # User research shows there is no need to capitalise keywords in technical specifications as proposed in https://www.ietf.org/rfc/rfc2119.txt. GOV.UK says no all caps and that holds for specs content.
 extends: substitution
-message: Use '%s' instead of '%s. There is no need for all caps.'
+message: Use '%s' instead. There is no need for all caps.
 level: error
-ignorecase: true
+ignorecase: false
 swap:
   MUST: must
   MUST NOT: must not

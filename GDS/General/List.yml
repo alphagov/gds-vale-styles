@@ -1,0 +1,9 @@
+# Modified from https://github.com/testthedocs/vale-styles/blob/d7182a2456f215fadd23dda92bbf1a006eabe2bf/jQuery/ListStart.yml
+extends: existence
+message: "Capitalise the first word in a list item."
+link: https://contribute.jquery.org/style-guide/prose/#article-amp-sentence-structure
+level: warning
+scope: list
+nonword: true
+tokens:
+  - '^[a-z].+'
